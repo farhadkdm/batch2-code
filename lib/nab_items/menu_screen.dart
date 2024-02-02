@@ -7,8 +7,12 @@ class MenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Menu Screen'),
-      ),
+        child: Container(
+          height: 30,
+          width: 40,
+          color: Colors.teal,
+          child: Text('Click')),
+      )
     );
   }
 }
