@@ -39,15 +39,35 @@ HomeScreen({super.key});
         ),
       ),
       body: Center(
-        child: InkWell(
-          onTap: () {
-            draweKey.currentState!.openDrawer();
-          },
-          child: Container(
-            height: 30,
-            width: 40,
-            color: Colors.teal,
-            child: Text('Click')),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {
+                draweKey.currentState!.openDrawer();
+              },
+              child: Container(
+                height: 30,
+                width: 40,
+                color: Colors.teal,
+                child: Text('Click')),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: Container(
+                height: 40,
+                width: 60,
+                color: Colors.red,
+                child: Center(
+                  child: Text('Back',style: TextStyle(
+                    color: Colors.white
+                  ),),
+                ),
+              ),
+            )
+          ],
         ),
       )
       

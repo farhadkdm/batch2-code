@@ -1,7 +1,9 @@
+import 'package:batch2/show_data_screen.dart';
 import 'package:batch2/widget/custom_text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:page_transition/page_transition.dart';
 
 class MenuScreen extends StatefulWidget {
   MenuScreen({super.key});
@@ -26,20 +28,56 @@ class _MenuScreenState extends State<MenuScreen> {
           padding: const EdgeInsets.all(30),
           child: Center(
             
-            child: MasonryGridView.count(
-              crossAxisCount: 3,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
-              itemCount: 10,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 200,
-                  width: 50,
-                  color: Colors.amber,
-                );
-              },
-            )
+            child: Column(
+              children: [
+                TextField(
+                  controller: nameController,
+                ),
+                GestureDetector(
+                  onTap:() {
+                    Navigator.push(context, PageTransition(
+                      type: PageTransitionType.leftToRight, 
+                    child: ShowDataScreen(
+                      text: nameController.text.toString(),
+                    ))
+                    );
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 60,
+                    color: Colors.green,
+                    child: Text('Submit'),
+                  ),
+                )
+              ],
+            ),
+
+            
+            // MasonryGridView.count(
+            //   crossAxisCount: 3,
+            //   mainAxisSpacing: 20,
+            //   crossAxisSpacing: 20,
+            //   itemCount: 10,
+            //   shrinkWrap: true,
+            //   itemBuilder: (context, index) {
+            //     return GestureDetector(
+            //       onTap:() {
+            //         Navigator.push(context, MaterialPageRoute(builder: (context)=>ShowDataScreen(
+            //           text: index.toString(),
+            //         )));
+            //       },
+            //       child: Container(
+            //         height: 200,
+            //         width: 50,
+            //         decoration: BoxDecoration(
+            //           color: Colors.amber,
+            //           borderRadius: BorderRadius.circular(30)
+            //         ),
+            //         child: Center(child: Text(index.toString())),
+            //       ),
+            //     );
+            //   },
+            // )
             
             
             
