@@ -1,8 +1,10 @@
 import 'package:batch2/show_data_screen.dart';
 import 'package:batch2/widget/custom_text_field_widget.dart';
+import 'package:batch2/widget/custom_toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -15,9 +17,15 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   TextEditingController nameController = TextEditingController();
 
-  var name = '';
+  var name = '1';
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  String val = '1';
+
+  List<String> list1 = [
+    '1','2','3','4'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -30,25 +38,165 @@ class _MenuScreenState extends State<MenuScreen> {
             
             child: Column(
               children: [
-                TextField(
-                  controller: nameController,
-                ),
-                GestureDetector(
-                  onTap:() {
-                    Navigator.push(context, PageTransition(
-                      type: PageTransitionType.leftToRight, 
-                    child: ShowDataScreen(
-                      text: nameController.text.toString(),
-                    ))
-                    );
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 60,
-                    color: Colors.green,
-                    child: Text('Submit'),
-                  ),
-                )
+
+                DropdownButton(
+                  value: val,
+                  items: list1.map((e) {
+                    return DropdownMenuItem(
+                      value: e,
+                      child: Text(e.toString()));
+                  }).toList(), 
+                  onChanged: (value){
+                    setState(() {
+                      val = value!;
+                    });
+                  })
+
+
+
+                // GestureDetector(
+                //   onTap:() {
+
+                //     //bottom modal sheet
+                //     // showModalBottomSheet(context: context, 
+                //     // isDismissible: false,
+                //     // enableDrag: false,
+                //     // backgroundColor: Colors.transparent,
+                //     // builder: (context){
+                //     //   return Container(
+                //     //     height: 500,
+                //     //     width: double.infinity,
+                //     //     decoration: BoxDecoration(
+                //     //       color: Colors.teal,
+                //     //       borderRadius: BorderRadius.only(
+                //     //         topLeft: Radius.circular(60),
+                //     //         topRight: Radius.circular(60)
+                //     //       )
+                //     //     ),
+                //     //   );
+                //     // });
+
+
+                //     //dialog box
+
+                //     // showDialog(context: context, 
+                    
+                //     // barrierDismissible: false,
+                //     // builder: (conext){ 
+                      
+                //     //   return Dialog(
+                //     //     backgroundColor: Colors.transparent,
+                //     //     insetPadding: EdgeInsets.only(
+                //     //       left: 16,right: 16
+                //     //     ),
+                //     //     child: Container(
+                //     //       height: 400,
+                //     //       width: 500,
+                //     //       decoration: BoxDecoration(
+                //     //         color: Colors.green,
+                //     //         borderRadius: BorderRadius.circular(60)
+                //     //       ),
+                //     //       child: Center(
+                //     //         child: InkWell(
+                //     //           onTap: () {
+                //     //             Navigator.of(context).pop();
+                //     //           },
+                //     //           child: Container(
+                //     //             height: 40,
+                //     //             width: 40,
+                //     //             color: Colors.red,
+                //     //             child: Text('close'),
+                //     //           ),
+                //     //         ),
+                //     //       ),
+                //     //     ),
+                //     //   );
+                      
+                      
+                //     //   // AlertDialog(
+                //     //   //   content: InkWell(
+                //     //   //     onTap: () {
+                //     //   //       Navigator.of(context).pop();
+                //     //   //     },
+                //     //   //     child: Container(
+                //     //   //       height: 40,
+                //     //   //       width: 40,
+                //     //   //       color: Colors.red,
+                //     //   //       child: Text('close'),
+                //     //   //     ),
+                //     //   //   ),
+                //     //   // );
+                //     // });
+                //   },
+                //   child: Container(
+                //     height: 40,
+                //     width: 60,
+                //     color: Colors.green,
+                //     child: Text('Submit'),
+                //   ),
+                // )
+
+
+
+
+
+                //toast message
+
+                // GestureDetector(
+                //   onTap:() {
+                //     customToast(
+                //       text: 'Login successfull!'
+                //     );
+                //   },
+                //   child: Container(
+                //     height: 40,
+                //     width: 60,
+                //     color: Colors.green,
+                //     child: Text('Submit'),
+                //   ),
+                // )
+
+                // Wrap(
+                //   children: [
+                //     Container(
+                //       color: Colors.teal,
+                //       child: Text('Hello rtrtrtrt'))
+                //   ],
+                // )
+
+                // Row(
+                //   children: [
+                //     Expanded(
+                //       flex: 2,
+                //       child: Placeholder(),),
+                //     Expanded(
+                //       flex: 5,
+                //       child: Text('HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello'
+                //     ),)
+                //   ],
+                // ),
+                // SizedBox(
+                //   height: 40,
+                // ),
+                // TextField(
+                //   controller: nameController,
+                // ),
+                // GestureDetector(
+                //   onTap:() {
+                //     Navigator.push(context, PageTransition(
+                //       type: PageTransitionType.leftToRight, 
+                //     child: ShowDataScreen(
+                //       text: nameController.text.toString(),
+                //     ))
+                //     );
+                //   },
+                //   child: Container(
+                //     height: 40,
+                //     width: 60,
+                //     color: Colors.green,
+                //     child: Text('Submit'),
+                //   ),
+                // )
               ],
             ),
 
