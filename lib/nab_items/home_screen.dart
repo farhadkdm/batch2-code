@@ -52,6 +52,9 @@ HomeScreen({super.key});
                 color: Colors.teal,
                 child: Text('Click')),
             ),
+            SizedBox(
+              height: 30,
+            ),
             GestureDetector(
               onTap: () {
                 Navigator.of(context).pop();
