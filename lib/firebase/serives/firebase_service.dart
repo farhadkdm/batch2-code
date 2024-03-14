@@ -1,5 +1,6 @@
 import 'package:batch2/firebase/home_screen.dart';
 import 'package:batch2/firebase/login_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -51,5 +52,28 @@ class FirebaseService{
       print('Wrong password provided for that user.');
     }
   }
+}
+
+addNote({required String title, required String description}) async {
+  await FirebaseFirestore.instance.collection('Notes').add({
+    'title' : title,
+    'description' : description,
+  });
+}
+
+getNotes(){
+  Stream<QuerySnapshot> data = FirebaseFirestore.instance.collection('Notes').snapshots();
+  return data;
+}
+
+updateNote({required String id,required String title, required String description}) async {
+  await FirebaseFirestore.instance.collection('Notes').doc(id).update({
+    'title' : title,
+    'description' : description,
+  });
+}
+
+deleteNote({required String id}) async {
+  await FirebaseFirestore.instance.collection('Notes').doc(id).delete();
 }
 }
