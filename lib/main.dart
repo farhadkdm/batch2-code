@@ -1,9 +1,11 @@
 import 'package:batch2/firebase_options.dart';
+import 'package:batch2/provider_stm/provider/counter_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 
-import 'firebase/splash_screen.dart';
+import 'provider_stm/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,13 +21,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context)=>CounterProvider())
+      ],
+      child: MaterialApp(
+        title: 'Flutter',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        home: ProviderHomeScreen(),
       ),
-      home: SplashScreen(),
     );
   }
 }
