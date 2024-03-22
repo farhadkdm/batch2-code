@@ -1,4 +1,5 @@
 import 'package:batch2/firebase_options.dart';
+import 'package:batch2/model_class/home_model_class.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: GetxHomeScreen(),
+      home: HomePageModelClass(),
     );
   }
 }
